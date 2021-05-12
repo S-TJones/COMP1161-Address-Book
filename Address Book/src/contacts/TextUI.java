@@ -154,6 +154,42 @@ public class TextUI {
     }
 
     public void options() {
-        System.out.println("Options Coming soon.");
+        System.out.println("*******************************");
+        System.out.println("* Choose an option from below *");
+        System.out.println("*******************************");
+        System.out.println("* 1 - Add a new \'Contact\'     *");
+        System.out.println("* 2 - View all Contacts       *");
+        System.out.println("* 3 - Edit a \'Contact\'        *");
+        System.out.println("* 4 - Delete a \'Contact\'      *");
+        System.out.println("* 0 - Exit                    *");
+        System.out.println("*******************************");
+
+        String userOption = this.sc.nextLine().trim();
+
+        switch (userOption) {
+            case "0":
+                break;
+
+            case "1":
+                //
+                break;
+
+            case "2":
+                //
+                break;
+
+            case "3":
+                //
+                break;
+
+            case "4":
+                //
+                break;
+
+            default:
+                System.out.println("* Not a valid option.\n* Please try again.");
+                options();
+                break;
+        }
     }
 }
