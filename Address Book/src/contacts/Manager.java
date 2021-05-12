@@ -1,12 +1,13 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Manager {
     // Attributes
-    private String contactFileName = "contact.txt";
+    private String contactFileName = "contacts.txt";
     private String usersFileName = "name&pass.txt";
     private ArrayList<User> currentUsers = new ArrayList<User>();
     private ArrayList<UserContact> currentContacts = new ArrayList<UserContact>();
@@ -16,6 +17,14 @@ public class Manager {
     }
 
     // Methods
+    public void addUser(User newUser) {
+        this.currentUsers.add(newUser);
+    }
+
+    public void addContact(UserContact newContact) {
+        this.currentContacts.add(newContact);
+    }
+
     public boolean fileCheck(String fileName) {
 
         File file = new File(fileName);
@@ -35,20 +44,57 @@ public class Manager {
     }
 
     public ArrayList<User> getUsers() {
-
         return this.currentUsers;
     }
 
-    public void getUsersFile(String userFileName) {
+    public void updateUsers() {
+        boolean exists = fileCheck(this.usersFileName);
+
+        if (exists) {
+            try {
+                File file = new File(this.usersFileName);
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String line;
+                int max = -1;
+
+                while ((line = br.readLine()) != null) {
+                    String[] inputLineArray = line.split(":");
+
+                    String id = inputLineArray[0];
+                    int userID = Integer.parseInt(id);
+                    if (userID >= max) {
+                        max = userID;
+                    }
+
+                    String fullName = inputLineArray[1];
+                    String[] name = fullName.split(" ");
+
+                    String userName = inputLineArray[2];
+
+                    String password = inputLineArray[3];
+
+                    User user = new User(name[0], name[1], password);
+                    user.changeUserName(userName);
+
+                    currentUsers.add(user);
+                }
+
+                User.count = max;
+                br.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("* User File is empty.");
+        }
     }
 
     public ArrayList<UserContact> getContacts() {
-
         return this.currentContacts;
     }
 
-    public void getContactsFile(String contactFileName) {
-        boolean exists = fileCheck(contactFileName);
+    public void updateContacts() {
+        boolean exists = fileCheck(this.contactFileName);
 
         if (exists) {
             try {
@@ -94,6 +140,40 @@ public class Manager {
             }
         } else {
             System.out.println("* Contact File is empty.");
+        }
+    }
+
+    public void updateUserFile() {
+        try {
+            FileWriter fileWriter = new FileWriter(this.usersFileName);
+
+            String output = "";
+            for (User user : currentUsers) {
+                output += user.toString() + "\n";
+            }
+
+            fileWriter.write(output);
+            fileWriter.close();
+        } catch (Exception e) {
+            System.out.println("* An error occured.");
+            e.printStackTrace();
+        }
+    }
+
+    public void updateContactFile() {
+        try {
+            FileWriter fileWriter = new FileWriter(this.usersFileName);
+
+            String output = "";
+            for (UserContact userContact : currentContacts) {
+                output += userContact.toString() + "\n";
+            }
+
+            fileWriter.write(output);
+            fileWriter.close();
+        } catch (Exception e) {
+            System.out.println("* An error occured.");
+            e.printStackTrace();
         }
     }
 }

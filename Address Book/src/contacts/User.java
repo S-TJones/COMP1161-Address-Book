@@ -3,7 +3,7 @@ public class User {
     private String firstName, lastName, userName;
     private String password = "None";
     private int userID;
-    private static int count;
+    public static int count;
     private static String format = "FL";
 
     // Constructors
@@ -80,7 +80,7 @@ public class User {
     }
 
     public String toString() {
-        String repr = getID() + ":" + getFullName() + ":" + getUserPassword();
+        String repr = getID() + ":" + getFullName() + ":" + getUserName() + ":" + getUserPassword();
         return repr;
     }
 
