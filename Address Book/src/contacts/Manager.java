@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Manager {
     // Attributes
     private String contactFileName = "contacts.txt";
-    private String usersFileName = "name&pass.txt";
+    private String usersFileName = "login.txt";
     private ArrayList<User> currentUsers = new ArrayList<User>();
     private ArrayList<UserContact> currentContacts = new ArrayList<UserContact>();
 
