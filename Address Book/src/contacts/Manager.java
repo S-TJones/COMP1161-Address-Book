@@ -162,7 +162,7 @@ public class Manager {
 
     public void updateContactFile() {
         try {
-            FileWriter fileWriter = new FileWriter(this.usersFileName);
+            FileWriter fileWriter = new FileWriter(this.contactFileName);
 
             String output = "";
             for (UserContact userContact : currentContacts) {

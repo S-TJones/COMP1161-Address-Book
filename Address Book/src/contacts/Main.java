@@ -6,6 +6,7 @@ public class Main {
             runner.welcome();
         } catch (Exception e) {
             System.out.println("\n* An Error occurred.");
+            e.printStackTrace();
         }
 
         runner.goodbye();

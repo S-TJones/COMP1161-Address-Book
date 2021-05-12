@@ -171,11 +171,13 @@ public class TextUI {
                 break;
 
             case "1":
-                //
+                makeContact();
+                options();
                 break;
 
             case "2":
                 viewContacts();
+                options();
                 break;
 
             case "3":
@@ -193,12 +195,49 @@ public class TextUI {
         }
     }
 
+    private void makeContact() {
+        System.out.println("-------------------------------");
+        System.out.println("* Enter thier First Name.");
+        String fName = this.sc.nextLine().trim();
+
+        System.out.println("* Enter thier Last Name.");
+        String lName = this.sc.nextLine().trim();
+
+        String fullName = fName + " " + lName;
+        System.out.println("* How many Phone Numbers does \'" + fullName + "\' have?");
+        int num = Integer.parseInt(this.sc.nextLine().trim());
+        ArrayList<String> phoneNumbers = new ArrayList<String>();
+
+        for (int i = 0; i < num; i++) {
+            System.out.println("* Enter a phone number:");
+            String phoneNum = this.sc.nextLine().trim();
+            phoneNumbers.add(phoneNum);
+        }
+
+        UserContact newContact = new UserContact(fName, lName, phoneNumbers);
+        this.controller.addContact(newContact);
+
+        System.out.println("\n*******************************");
+        System.out.println("* New Contact Added");
+        System.out.println("*******************************\n");
+        System.out.println("-------------------------------");
+    }
+
     public void viewContacts() {
 
-        for (UserContact contact : this.controller.getContacts()) {
-            System.out.println("-------------------------------");
-            System.out.println(contact.displayString());
+        ArrayList<UserContact> contacts = this.controller.getContacts();
+
+        if (contacts.size() == 0) {
+            System.out.println("\n---------------------------------------------");
+            System.out.println("- There are currently no contacts available -");
+            System.out.println("---------------------------------------------\n");
+        } else {
+            for (UserContact contact : contacts) {
+                System.out.println("\n---------------------------------------------");
+                System.out.println(contact.displayString());
+            }
+            System.out.println("---------------------------------------------\n");
         }
-        System.out.println("-------------------------------");
+
     }
 }

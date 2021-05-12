@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class UserContact {
     // Attributes
     private String firstName, lastName, nickName;
-    private ArrayList<String> address;
-    private ArrayList<String> emails;
-    private ArrayList<String> phoneNumber;
+    private ArrayList<String> address = new ArrayList<String>();
+    private ArrayList<String> emails = new ArrayList<String>();
+    private ArrayList<String> phoneNumber = new ArrayList<String>();
     private int contactID;
     public static int contactCount;
 
@@ -141,18 +141,18 @@ public class UserContact {
         }
 
         if (this.address.size() == 0) {
-            display += "|Address: No Address added.";
+            display += "\n|Address: No Address added.";
         } else {
-            display += "|Address:\n|";
+            display += "\n|Address:\n|";
             for (String string : address) {
                 display += string + "\n|";
             }
         }
 
         if (this.emails.size() == 0) {
-            display += "|Email: No Emails added.";
+            display += "\n|Email: No Emails added.";
         } else {
-            display += "|Email:\n|";
+            display += "\n|Email:\n|";
             for (String string : address) {
                 display += string + "\n|";
             }
