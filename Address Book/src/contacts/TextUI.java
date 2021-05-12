@@ -181,17 +181,48 @@ public class TextUI {
                 break;
 
             case "3":
-                //
+                System.out.println("* This function isn't complete.");
+                options();
                 break;
 
             case "4":
-                //
+                deleteContact();
+                options();
                 break;
 
             default:
                 System.out.println("* Not a valid option.\n* Please try again.");
                 options();
                 break;
+        }
+    }
+
+    private void deleteContact() {
+        System.out.println("-------------------------------");
+        System.out.println("* Enter the full name of the contact you wish to delete.");
+        String fullName = this.sc.nextLine().toLowerCase();
+        boolean deleted;
+
+        try {
+            String[] pieces = fullName.split(" ");
+
+            if (pieces.length < 2) {
+                System.out.println("* ERROR: You need to enter both First Name and Last Name.");
+                deleteContact();
+            }
+        } catch (Exception e) {
+            System.out.println("* An ERROR occurred.\n* Please try again.");
+            deleteContact();
+        }
+
+        deleted = this.controller.removeContact(fullName);
+
+        if (deleted) {
+            System.out.println("\n*******************************");
+            System.out.println("* \'" + fullName + "\' has been Deleted");
+            System.out.println("*******************************\n");
+        } else {
+            System.out.println("* \'" + fullName + "\' cannot be found.");
         }
     }
 

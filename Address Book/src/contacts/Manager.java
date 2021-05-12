@@ -176,4 +176,25 @@ public class Manager {
             e.printStackTrace();
         }
     }
+
+    public boolean removeContact(String fullName) {
+        boolean removed = false;
+        int location = -1;
+
+        for (int i = 0; i < currentContacts.size(); i++) {
+            UserContact contact = currentContacts.get(i);
+
+            if (contact.getFullName().equals(fullName)) {
+                location = i;
+                break;
+            }
+        }
+
+        if (location != -1) {
+            this.currentContacts.remove(location);
+            removed = true;
+        }
+
+        return removed;
+    }
 }

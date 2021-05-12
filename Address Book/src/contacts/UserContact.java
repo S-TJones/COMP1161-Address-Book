@@ -91,8 +91,12 @@ public class UserContact {
     public String getEmailsString() {
         String allEmails = "";
 
-        for (String string : this.emails) {
-            allEmails = allEmails + string + ";";
+        if (this.emails.size() > 0) {
+            for (String string : this.emails) {
+                allEmails = allEmails + string + ";";
+            }
+        } else {
+            allEmails = " ";
         }
 
         return allEmails;
@@ -101,8 +105,12 @@ public class UserContact {
     public String getAddressString() {
         String fullAddress = "";
 
-        for (String string : this.address) {
-            fullAddress = fullAddress + string + ";";
+        if (this.address.size() > 0) {
+            for (String string : this.address) {
+                fullAddress = fullAddress + string + ";";
+            }
+        } else {
+            fullAddress = " ";
         }
 
         return fullAddress;
@@ -111,17 +119,25 @@ public class UserContact {
     public String getPhoneString() {
         String phoneNumbers = "";
 
-        for (String string : this.phoneNumber) {
-            phoneNumbers = phoneNumbers + string + ";";
+        if (this.phoneNumber.size() > 0) {
+            for (String string : this.phoneNumber) {
+                phoneNumbers = phoneNumbers + string + ";";
+            }
+        } else {
+            phoneNumbers = " ";
         }
 
         return phoneNumbers;
     }
 
+    public String getFullName() {
+        return getFirstName() + " " + getLastName();
+    }
+
     @Override
     public String toString() {
-        String repr = getContactID() + ":" + getFirstName() + " " + getLastName() + ":";
-        repr = repr + getEmailsString() + ":" + getPhoneString() + ":" + getAddressString();
+        String repr = getContactID() + ":" + getFullName() + ":";
+        repr += getEmailsString() + ":" + getPhoneString() + ":" + getAddressString() + ":";
 
         return repr;
     }
@@ -129,7 +145,7 @@ public class UserContact {
     public String displayString() {
         String display = "";
 
-        display += "|Name: " + getFirstName() + " " + getLastName() + "\n";
+        display += "|Name: " + getFullName() + "\n";
 
         if (this.phoneNumber.size() == 1) {
             display += "|Phone: " + phoneNumber.get(0);
@@ -140,7 +156,7 @@ public class UserContact {
             }
         }
 
-        if (this.address.size() == 0) {
+        if (this.address.size() == 1) {
             display += "\n|Address: No Address added.";
         } else {
             display += "\n|Address:\n|";
@@ -149,7 +165,7 @@ public class UserContact {
             }
         }
 
-        if (this.emails.size() == 0) {
+        if (this.emails.size() == 1) {
             display += "\n|Email: No Emails added.";
         } else {
             display += "\n|Email:\n|";
