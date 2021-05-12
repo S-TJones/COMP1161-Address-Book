@@ -175,7 +175,7 @@ public class TextUI {
                 break;
 
             case "2":
-                //
+                viewContacts();
                 break;
 
             case "3":
@@ -191,5 +191,14 @@ public class TextUI {
                 options();
                 break;
         }
+    }
+
+    public void viewContacts() {
+
+        for (UserContact contact : this.controller.getContacts()) {
+            System.out.println("-------------------------------");
+            System.out.println(contact.displayString());
+        }
+        System.out.println("-------------------------------");
     }
 }

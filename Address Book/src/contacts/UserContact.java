@@ -125,4 +125,39 @@ public class UserContact {
 
         return repr;
     }
+
+    public String displayString() {
+        String display = "";
+
+        display += "|Name: " + getFirstName() + " " + getLastName() + "\n";
+
+        if (this.phoneNumber.size() == 1) {
+            display += "|Phone: " + phoneNumber.get(0);
+        } else {
+            display += "|Phone: ";
+            for (String string : phoneNumber) {
+                display += string + ", ";
+            }
+        }
+
+        if (this.address.size() == 0) {
+            display += "|Address: No Address added.";
+        } else {
+            display += "|Address:\n|";
+            for (String string : address) {
+                display += string + "\n|";
+            }
+        }
+
+        if (this.emails.size() == 0) {
+            display += "|Email: No Emails added.";
+        } else {
+            display += "|Email:\n|";
+            for (String string : address) {
+                display += string + "\n|";
+            }
+        }
+
+        return display;
+    }
 }
