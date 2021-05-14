@@ -91,9 +91,12 @@ public class UserContact {
     public String getEmailsString() {
         String allEmails = "";
 
-        if (this.emails.size() > 0) {
-            for (String string : this.emails) {
-                allEmails = allEmails + string + ";";
+        if (this.emails.size() == 1) {
+            allEmails += emails.get(0) + ";";
+        } else if (this.emails.size() >= 2) {
+            allEmails += emails.get(0);
+            for (int i = 1; i < this.emails.size(); i++) {
+                allEmails += ";" + emails.get(i);
             }
         } else {
             allEmails = " ";
@@ -105,9 +108,12 @@ public class UserContact {
     public String getAddressString() {
         String fullAddress = "";
 
-        if (this.address.size() > 0) {
-            for (String string : this.address) {
-                fullAddress = fullAddress + string + ";";
+        if (this.address.size() >= 1) {
+            fullAddress = fullAddress + this.address.get(0);
+            for (int i = 1; i < this.address.size(); i++) {
+                for (String string : this.address) {
+                    fullAddress += ";" + string;
+                }
             }
         } else {
             fullAddress = " ";
@@ -119,9 +125,12 @@ public class UserContact {
     public String getPhoneString() {
         String phoneNumbers = "";
 
-        if (this.phoneNumber.size() > 0) {
-            for (String string : this.phoneNumber) {
-                phoneNumbers = phoneNumbers + string + ";";
+        if (this.phoneNumber.size() == 1) {
+            phoneNumbers += phoneNumber.get(0) + ";";
+        } else if (this.phoneNumber.size() >= 2) {
+            phoneNumbers += phoneNumber.get(0);
+            for (int i = 1; i < this.phoneNumber.size(); i++) {
+                phoneNumbers += ";" + phoneNumber.get(i);
             }
         } else {
             phoneNumbers = " ";
