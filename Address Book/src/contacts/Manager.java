@@ -85,7 +85,7 @@ public class Manager {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("* User File is empty.");
+            System.out.println("| WARNING: User File is empty.");
         }
     }
 
@@ -139,7 +139,7 @@ public class Manager {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("* Contact File is empty.");
+            System.out.println("| WARNING: Contact File is empty.");
         }
     }
 

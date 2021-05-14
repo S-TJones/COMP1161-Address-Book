@@ -15,21 +15,21 @@ public class TextUI {
 
     // Methods
     public void welcome() {
-        System.out.println("*******************************");
+        System.out.println("\n*******************************");
         System.out.println("* Welcome");
         System.out.println("*******************************");
         enter();
     }
 
     public void goodbye() {
-        System.out.println("*******************************");
+        System.out.println("\n*******************************");
         System.out.println("* GOODBYE");
         System.out.println("*******************************");
         this.sc.close();
     }
 
     public void enter() {
-        System.out.println("*******************************");
+        System.out.println("\n*******************************");
         System.out.println("* Would you like to:");
         System.out.println("* 1 - Login");
         System.out.println("* 2 - Sign Up");
@@ -40,7 +40,15 @@ public class TextUI {
 
         switch (userOption) {
             case "1":
-                logIn();
+                if (this.controller.getUsers().size() == 0) {
+                    System.out.println("\n-------------------------------");
+                    System.out.println("\n* There are no User accounts.\n* Please create one before continuing.\n");
+                    System.out.println("-------------------------------");
+                    signUp();
+                } else {
+                    logIn();
+                }
+
                 break;
 
             case "2":
@@ -58,8 +66,8 @@ public class TextUI {
     }
 
     public void save() {
-
-        System.out.println("\n* Would you like to save this changes?");
+        System.out.println("\n*******************************");
+        System.out.println("* Would you like to save any changes made?");
         System.out.println("* Enter 1 for \'YES\'\n* Enter 2 for \'NO\'");
         int save = sc.nextInt();
 
@@ -99,7 +107,7 @@ public class TextUI {
         int currentTry = 0;
 
         while (currentTry < maxTry) {
-            System.out.println("* Enter your User Name: ");
+            System.out.println("\n* Enter your User Name: ");
             String userName = this.sc.nextLine().trim().toLowerCase();
 
             String pass = checkForUser(userName);
@@ -126,7 +134,7 @@ public class TextUI {
     }
 
     public void signUp() {
-        System.out.println("*******************************");
+        System.out.println("\n*******************************");
         System.out.println("* SIGNUP");
         System.out.println("*******************************");
 
@@ -146,7 +154,7 @@ public class TextUI {
 
         this.controller.addUser(user);
 
-        System.out.println("*******************************");
+        System.out.println("\n*******************************");
         System.out.println("* New User \'" + uName + "\' added successfully.");
         System.out.println("*******************************");
 
@@ -154,7 +162,7 @@ public class TextUI {
     }
 
     public void options() {
-        System.out.println("*******************************");
+        System.out.println("\n*******************************");
         System.out.println("* Choose an option from below *");
         System.out.println("*******************************");
         System.out.println("* 1 - Add a new \'Contact\'     *");
@@ -198,7 +206,7 @@ public class TextUI {
     }
 
     private void deleteContact() {
-        System.out.println("-------------------------------");
+        System.out.println("\n-------------------------------");
         System.out.println("* Enter the full name of the contact you wish to delete.");
         String fullName = this.sc.nextLine().toLowerCase();
         boolean deleted;
@@ -207,11 +215,15 @@ public class TextUI {
             String[] pieces = fullName.split(" ");
 
             if (pieces.length < 2) {
+                System.out.println("-------------------------------");
                 System.out.println("* ERROR: You need to enter both First Name and Last Name.");
+                System.out.println("-------------------------------");
                 deleteContact();
             }
         } catch (Exception e) {
+            System.out.println("-------------------------------");
             System.out.println("* An ERROR occurred.\n* Please try again.");
+            System.out.println("-------------------------------");
             deleteContact();
         }
 
@@ -227,7 +239,7 @@ public class TextUI {
     }
 
     private void makeContact() {
-        System.out.println("-------------------------------");
+        System.out.println("\n-------------------------------");
         System.out.println("* Enter thier First Name.");
         String fName = this.sc.nextLine().trim();
 
