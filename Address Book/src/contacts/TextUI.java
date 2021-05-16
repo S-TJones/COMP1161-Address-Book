@@ -189,7 +189,8 @@ public class TextUI {
                 break;
 
             case "3":
-                System.out.println("* This function isn't complete.");
+                // System.out.println("* This function isn't complete.");
+                editContact();
                 options();
                 break;
 
@@ -203,6 +204,69 @@ public class TextUI {
                 options();
                 break;
         }
+    }
+
+    private void editContact() {
+        int userOption;
+        String fullName = "";
+
+        System.out.println("\n*******************************");
+        System.out.println("* Choose an option from below *");
+        System.out.println("*******************************");
+        System.out.println("* 1 - Add a new Phone Number  *");
+        System.out.println("* 2 - Add a new Address       *");
+        System.out.println("* 3 - Add a new Email         *");
+        System.out.println("* 0 - Exit                    *");
+        System.out.println("*******************************");
+
+        try {
+            userOption = Integer.parseInt(this.sc.nextLine());
+
+            if (userOption >= 0 && userOption <= 3) {
+                System.out.println("\n-------------------------------");
+                System.out.println("* Enter the full name of the contact you wish to edit.");
+                fullName = this.sc.nextLine().toLowerCase();
+            }
+
+            switch (userOption) {
+                case 0:
+                    break;
+
+                case 1:
+                    addPhoneNumber(fullName);
+                    break;
+
+                case 2:
+                    addAddress(fullName);
+                    break;
+
+                case 3:
+                    addEmail(fullName);
+                    break;
+
+                default:
+                    System.out.println("* Not a valid option.\n* Please try again.");
+                    editContact();
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("|------------------------------");
+            System.out.println("| An ERROR occurred");
+            e.printStackTrace();
+            System.out.println("|------------------------------");
+        }
+    }
+
+    private void addPhoneNumber(String contactName) {
+        System.out.println("It works");
+    }
+
+    private void addEmail(String contactName) {
+        System.out.println("It works");
+    }
+
+    private void addAddress(String contactName) {
+        System.out.println("It works");
     }
 
     private void deleteContact() {
@@ -275,8 +339,9 @@ public class TextUI {
             System.out.println("- There are currently no contacts available -");
             System.out.println("---------------------------------------------\n");
         } else {
+            System.out.println();
             for (UserContact contact : contacts) {
-                System.out.println("\n---------------------------------------------");
+                System.out.println("---------------------------------------------");
                 System.out.println(contact.displayString());
             }
             System.out.println("---------------------------------------------\n");
