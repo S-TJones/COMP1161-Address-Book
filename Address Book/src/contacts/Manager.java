@@ -177,11 +177,16 @@ public class Manager {
         }
     }
 
-    public int findContact(String contactName) {
+    public int findContact(String firstName, String lastName, ArrayList<UserContact> allContacts) {
+        String contactName = firstName + " " + lastName;
         int location = -1;
 
-        for (int i = 0; i < currentContacts.size(); i++) {
-            UserContact contact = currentContacts.get(i);
+        if (allContacts == null || allContacts.size() == 0) {
+            return location;
+        }
+
+        for (int i = 0; i < allContacts.size(); i++) {
+            UserContact contact = allContacts.get(i);
 
             if (contact.getFullName().equals(contactName)) {
                 location = i;
@@ -194,7 +199,9 @@ public class Manager {
 
     public boolean removeContact(String fullName) {
         boolean removed = false;
-        int location = findContact(fullName);
+
+        String[] name = fullName.split(" ");
+        int location = findContact(name[0], name[1], this.currentContacts);
 
         if (location != -1) {
             this.currentContacts.remove(location);
