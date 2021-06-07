@@ -27,20 +27,23 @@ public class Manager {
 
     public boolean fileCheck(String fileName) {
 
-        File file = new File(fileName);
+        boolean check = false;
 
         try {
+            File file = new File(fileName);
+
             // Check if it exists
             if (!file.exists()) {
                 file.createNewFile(); // Creates the file
-                return false;
+                check = false;
             } else {
-                return true;
+                check = true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        
+        return check;
     }
 
     public ArrayList<User> getUsers() {
